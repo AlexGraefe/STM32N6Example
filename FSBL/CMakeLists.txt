@@ -94,7 +94,7 @@ add_custom_command(
 )
 
 # Define the paths to the STM32 Signing Tool and the input/output files
-set(SIGNING_TOOL "/usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_SigningTool_CLI")
+set(SIGNING_TOOL "STM32_SigningTool_CLI")
 # Define the input and output files for FSBL
 set(FSBL_INPUT "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin")
 set(FSBL_OUTPUT "${CMAKE_BINARY_DIR}/FSBL-trusted.bin")

@@ -1,12 +1,12 @@
 #!/bin/bash
-/usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI -c port=SWD  -d ./FSBL/build/FSBL-trusted.bin 0x70000000 -el /usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/ExternalLoader/MX66UW1G45G_STM32N6570-DK.stldr 
+STM32_Programmer_CLI -c port=SWD  -d ./FSBL/build/FSBL-trusted.bin 0x70000000 -el /usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/ExternalLoader/MX66UW1G45G_STM32N6570-DK.stldr 
 if [ $? -ne 0 ]; then
     echo ""
     echo -e "\033[0;31mError: Failed to program FSBL. Please see error messages above.\033[0m" >&2
     exit 1
 fi
 
-/usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_Programmer_CLI -c port=SWD  -d ./Appli/build/Appli-trusted.bin 0x70100000 -el /usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/ExternalLoader/MX66UW1G45G_STM32N6570-DK.stldr 
+STM32_Programmer_CLI -c port=SWD  -d ./Appli/build/Appli-trusted.bin 0x70100000 -el /usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/ExternalLoader/MX66UW1G45G_STM32N6570-DK.stldr 
 if [ $? -ne 0 ]; then
     echo ""
     echo -e "\033[0;31mError: Failed to program Application. Please see error messages above.\033[0m" >&2

@@ -59,6 +59,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    ./Core/Src/uart_redirect.c
 )
 
 # Link directories setup
@@ -94,7 +95,7 @@ add_custom_command(
 )
 
 # Define the paths to the STM32 Signing Tool and the input/output files
-set(SIGNING_TOOL "/usr/local/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32_SigningTool_CLI")
+set(SIGNING_TOOL "STM32_SigningTool_CLI")
 # Define the input and output files for Appli
 set(APPLI_INPUT "${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.bin")
 set(APPLI_OUTPUT "${CMAKE_BINARY_DIR}/Appli-trusted.bin")
