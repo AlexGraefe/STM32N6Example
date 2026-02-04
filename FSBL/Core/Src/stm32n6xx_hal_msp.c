@@ -439,8 +439,6 @@ void HAL_HCD_MspDeInit(HCD_HandleTypeDef* hhcd)
 
 }
 
-static uint32_t HAL_RCC_XSPIM_CLK_ENABLED=0;
-
 /**
   * @brief XSPI MSP Initialization
   * This function configures the hardware resources used in this example
@@ -451,77 +449,7 @@ void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
-  if(hxspi->Instance==XSPI1)
-  {
-    /* USER CODE BEGIN XSPI1_MspInit 0 */
-
-    /* USER CODE END XSPI1_MspInit 0 */
-
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_XSPI1;
-    PeriphClkInitStruct.Xspi1ClockSelection = RCC_XSPI1CLKSOURCE_HCLK;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
-    /* Peripheral clock enable */
-    HAL_RCC_XSPIM_CLK_ENABLED++;
-    if(HAL_RCC_XSPIM_CLK_ENABLED==1){
-      __HAL_RCC_XSPIM_CLK_ENABLE();
-    }
-    __HAL_RCC_XSPI1_CLK_ENABLE();
-
-    __HAL_RCC_GPIOP_CLK_ENABLE();
-    __HAL_RCC_GPIOO_CLK_ENABLE();
-    /**XSPI1 GPIO Configuration
-    PP7     ------> XSPIM_P1_IO7
-    PP6     ------> XSPIM_P1_IO6
-    PP0     ------> XSPIM_P1_IO0
-    PP4     ------> XSPIM_P1_IO4
-    PP1     ------> XSPIM_P1_IO1
-    PP15     ------> XSPIM_P1_IO15
-    PP5     ------> XSPIM_P1_IO5
-    PP12     ------> XSPIM_P1_IO12
-    PP3     ------> XSPIM_P1_IO3
-    PP2     ------> XSPIM_P1_IO2
-    PP13     ------> XSPIM_P1_IO13
-    PO2     ------> XSPIM_P1_DQS0
-    PP11     ------> XSPIM_P1_IO11
-    PP8     ------> XSPIM_P1_IO8
-    PP14     ------> XSPIM_P1_IO14
-    PO3     ------> XSPIM_P1_DQS1
-    PO0     ------> XSPIM_P1_NCS1
-    PP9     ------> XSPIM_P1_IO9
-    PP10     ------> XSPIM_P1_IO10
-    PO4     ------> XSPIM_P1_CLK
-    */
-    GPIO_InitStruct.Pin = HEXASPI_IO_7_Pin|HEXASPI_IO_6_Pin|HEXASPI_IO_0_Pin|HEXASPI_IO_4_Pin
-                          |HEXASPI_IO_1_Pin|HEXASPI_IO_15_Pin|HEXASPI_IO_5_Pin|HEXASPI_IO_12_Pin
-                          |HEXASPI_IO_3_Pin|HEXASPI_IO_2_Pin|HEXASPI_IO_13_Pin|HEXASPI_IO_11_Pin
-                          |HEXASPI_IO_8_Pin|HEXASPI_IO_14_Pin|HEXASPI_IO_9_Pin|HEXASPI_IO_10_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF9_XSPIM_P1;
-    HAL_GPIO_Init(GPIOP, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = HEXASPI_DQS0_Pin|HEXASPI_DQS1_Pin|HEXASPI_NCS_Pin|HEXASPI_CLK_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF9_XSPIM_P1;
-    HAL_GPIO_Init(GPIOO, &GPIO_InitStruct);
-
-    /* XSPI1 interrupt Init */
-    HAL_NVIC_SetPriority(XSPI1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(XSPI1_IRQn);
-    /* USER CODE BEGIN XSPI1_MspInit 1 */
-
-    /* USER CODE END XSPI1_MspInit 1 */
-  }
-  else if(hxspi->Instance==XSPI2)
+  if(hxspi->Instance==XSPI2)
   {
     /* USER CODE BEGIN XSPI2_MspInit 0 */
 
@@ -539,10 +467,7 @@ void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
     }
 
     /* Peripheral clock enable */
-    HAL_RCC_XSPIM_CLK_ENABLED++;
-    if(HAL_RCC_XSPIM_CLK_ENABLED==1){
-      __HAL_RCC_XSPIM_CLK_ENABLE();
-    }
+    __HAL_RCC_XSPIM_CLK_ENABLE();
     __HAL_RCC_XSPI2_CLK_ENABLE();
 
     __HAL_RCC_GPION_CLK_ENABLE();
@@ -571,6 +496,7 @@ void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
     /* USER CODE BEGIN XSPI2_MspInit 1 */
 
     /* USER CODE END XSPI2_MspInit 1 */
+
   }
 
 }
@@ -583,63 +509,13 @@ void HAL_XSPI_MspInit(XSPI_HandleTypeDef* hxspi)
   */
 void HAL_XSPI_MspDeInit(XSPI_HandleTypeDef* hxspi)
 {
-  if(hxspi->Instance==XSPI1)
-  {
-    /* USER CODE BEGIN XSPI1_MspDeInit 0 */
-
-    /* USER CODE END XSPI1_MspDeInit 0 */
-    /* Peripheral clock disable */
-    HAL_RCC_XSPIM_CLK_ENABLED--;
-    if(HAL_RCC_XSPIM_CLK_ENABLED==0){
-      __HAL_RCC_XSPIM_CLK_DISABLE();
-    }
-    __HAL_RCC_XSPI1_CLK_DISABLE();
-
-    /**XSPI1 GPIO Configuration
-    PP7     ------> XSPIM_P1_IO7
-    PP6     ------> XSPIM_P1_IO6
-    PP0     ------> XSPIM_P1_IO0
-    PP4     ------> XSPIM_P1_IO4
-    PP1     ------> XSPIM_P1_IO1
-    PP15     ------> XSPIM_P1_IO15
-    PP5     ------> XSPIM_P1_IO5
-    PP12     ------> XSPIM_P1_IO12
-    PP3     ------> XSPIM_P1_IO3
-    PP2     ------> XSPIM_P1_IO2
-    PP13     ------> XSPIM_P1_IO13
-    PO2     ------> XSPIM_P1_DQS0
-    PP11     ------> XSPIM_P1_IO11
-    PP8     ------> XSPIM_P1_IO8
-    PP14     ------> XSPIM_P1_IO14
-    PO3     ------> XSPIM_P1_DQS1
-    PO0     ------> XSPIM_P1_NCS1
-    PP9     ------> XSPIM_P1_IO9
-    PP10     ------> XSPIM_P1_IO10
-    PO4     ------> XSPIM_P1_CLK
-    */
-    HAL_GPIO_DeInit(GPIOP, HEXASPI_IO_7_Pin|HEXASPI_IO_6_Pin|HEXASPI_IO_0_Pin|HEXASPI_IO_4_Pin
-                          |HEXASPI_IO_1_Pin|HEXASPI_IO_15_Pin|HEXASPI_IO_5_Pin|HEXASPI_IO_12_Pin
-                          |HEXASPI_IO_3_Pin|HEXASPI_IO_2_Pin|HEXASPI_IO_13_Pin|HEXASPI_IO_11_Pin
-                          |HEXASPI_IO_8_Pin|HEXASPI_IO_14_Pin|HEXASPI_IO_9_Pin|HEXASPI_IO_10_Pin);
-
-    HAL_GPIO_DeInit(GPIOO, HEXASPI_DQS0_Pin|HEXASPI_DQS1_Pin|HEXASPI_NCS_Pin|HEXASPI_CLK_Pin);
-
-    /* XSPI1 interrupt DeInit */
-    HAL_NVIC_DisableIRQ(XSPI1_IRQn);
-    /* USER CODE BEGIN XSPI1_MspDeInit 1 */
-
-    /* USER CODE END XSPI1_MspDeInit 1 */
-  }
-  else if(hxspi->Instance==XSPI2)
+  if(hxspi->Instance==XSPI2)
   {
     /* USER CODE BEGIN XSPI2_MspDeInit 0 */
 
     /* USER CODE END XSPI2_MspDeInit 0 */
     /* Peripheral clock disable */
-    HAL_RCC_XSPIM_CLK_ENABLED--;
-    if(HAL_RCC_XSPIM_CLK_ENABLED==0){
-      __HAL_RCC_XSPIM_CLK_DISABLE();
-    }
+    __HAL_RCC_XSPIM_CLK_DISABLE();
     __HAL_RCC_XSPI2_CLK_DISABLE();
 
     /**XSPI2 GPIO Configuration

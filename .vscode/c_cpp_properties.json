@@ -9,8 +9,28 @@
             "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
         },
         {
+            "name": "STM32_FSBL",
+            "compileCommands": "${workspaceFolder}/FSBL/build/compile_commands.json"
+        },
+        {
             "name": "STM32_Appli",
             "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
+        },
+        {
+            "name": "STM32_Appli",
+            "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
+        },
+        {
+            "name": "STM32_Appli",
+            "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
+        },
+        {
+            "name": "STM32_Appli",
+            "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
+        },
+        {
+            "name": "STM32_FSBL",
+            "compileCommands": "${workspaceFolder}/FSBL/build/compile_commands.json"
         },
         {
             "name": "STM32_FSBL",
@@ -21,8 +41,12 @@
             "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
         },
         {
-            "name": "STM32_FSBL",
-            "compileCommands": "${workspaceFolder}/FSBL/build/compile_commands.json"
+            "name": "STM32_Appli",
+            "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
+        },
+        {
+            "name": "STM32_Appli",
+            "compileCommands": "${workspaceFolder}/Appli/build/compile_commands.json"
         },
         {
             "name": "STM32_Appli",

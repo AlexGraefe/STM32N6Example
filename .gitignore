@@ -2,6 +2,8 @@ build
 mx.scratch
 !.settings
 
+models/
+
 #python gitignore template from https://github.com/github/gitignore/blob/main/Python.gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
